@@ -8,7 +8,7 @@ before_install:
   - docker build -t seth/image -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true stephengrider/react-test npm test
+  - docker run -e CI=true seth/image npm test
 
 after_success:
   - docker build -t seth/multi-client ./client
