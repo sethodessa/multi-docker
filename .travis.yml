@@ -11,14 +11,14 @@ script:
   - docker run -e CI=true seth/image npm test
 
 after_success:
-  - docker build -t seth/multi-client ./client
-  - docker build -t seth/multi-nginx ./nginx
-  - docker build -t seth/multi-server ./server
-  - docker build -t seth/multi-worker ./worker
+  - docker build -t sethodessa/multi-client ./client
+  - docker build -t sethodessa/multi-nginx ./nginx
+  - docker build -t sethodessa/multi-server ./server
+  - docker build -t sethodessa/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push seth/multi-client
-  - docker push seth/multi-nginx
-  - docker push seth/multi-server
-  - docker push seth/multi-worker
+  - docker push sethodessa/multi-client
+  - docker push sethodessa/multi-nginx
+  - docker push sethodessa/multi-server
+  - docker push sethodessa/multi-worker

@@ -1,0 +1,29 @@
+{
+    "AWSEBDcokerrunVersion": 2,
+    "containerDefinitions": [
+    {
+        "name": "client",
+        "image": "seth/multi-client",
+        "hostname": "client",
+        "essential": false
+    },
+    {
+        "name": "server",
+        "image": "seth/multi-server",
+        "hostname": "api",
+        "essential": false
+    },
+    {
+        "name": "worker",
+        "image": "seth/multi-worker",
+        "hostname": "worker",
+        "essential": false
+    },
+    {
+        "name": "nginx",
+        "image": "seth/multi-nginx",
+        "essential": true,
+        
+    }
+    ]
+}
