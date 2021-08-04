@@ -1,0 +1,21 @@
+sudo: required 
+services:
+  - docker
+
+before_install:
+  - docker build -t seth/image -f ./client/Dockerfile.dev . 
+script:
+  - docker run -e CI=true seth/image npm run test -- --coverage
+
+after_sucess:
+  - docker build -t seth/multi-client ./client
+  - docker build -t seth/multi-nginx ./nginx
+  - docker build -t seth/multi-server ./server
+  - docker build -t seth/multi-worker ./worker
+  #log in to the docker CLI
+  - echo"$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # take those images and push them to docker hub
+  -docker push seth/multi-client
+  -docker push seth/multi-nginx
+  -docker push seth/multi-server
+  -docker push seth/multi-worker
