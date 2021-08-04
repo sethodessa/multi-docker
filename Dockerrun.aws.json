@@ -3,27 +3,33 @@
     "containerDefinitions": [
     {
         "name": "client",
-        "image": "seth/multi-client",
+        "image": "sethodessa/multi-client",
         "hostname": "client",
         "essential": false
     },
     {
         "name": "server",
-        "image": "seth/multi-server",
+        "image": "sethodessa/multi-server",
         "hostname": "api",
         "essential": false
     },
     {
         "name": "worker",
-        "image": "seth/multi-worker",
+        "image": "sethodessa/multi-worker",
         "hostname": "worker",
         "essential": false
     },
     {
         "name": "nginx",
-        "image": "seth/multi-nginx",
+        "image": "sethodessa/multi-nginx",
         "essential": true,
-        
+        "portMappings": [
+            {
+            "hostPort": 80,
+            "containerPort": 80
+            }
+        ],
+        "links": ["client", "server"]
     }
     ]
 }
